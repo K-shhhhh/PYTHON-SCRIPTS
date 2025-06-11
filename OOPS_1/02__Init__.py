@@ -1,0 +1,40 @@
+"""
+
+INIT FUNCTION : 
+ALSO CALLED CONSTUCTOR FUNCTION
+DEFAULT CONSTRUCTORS : ONLY HAVE SELF AS PARAMETER WITH "PASS"
+PARAMETRIZED CONSTRUCTORS : HAVE DIFFERENT PARAMETERS WITH COMMANDS/LINKS
+ALL CLASSES HAVE THIS FUNCTION AND IT IS EXECUTED WHEN OBJECT IS CREATED
+
+SELF : 1st PARAMETER IN CONSTRUCTOR FUNCTION THAT IS A REFERENCE TO THE NEW OBJECT CREATED 
+WE CAN ALWAYS RENAME SELF PARAMETER BY USING A DIFF NAME IN THE FIRST CONSTRUCTOR PARAMETER
+AFTER SELF PARAMETER, WE CAN USE ANY PARAMETER WE WANT AND THEN LINK IT WITH SELF
+
+"""
+print("\n")
+
+# Q1. USE INIT FUNCTION IN A CLASS / OBJECT
+class Student:                          # CREATING CLASS
+    name = "KRISH"
+    def __init__ (self):                # DEF INIT FUNCTION USING SELF 
+        print(self)                     # PRINTING SELF
+        print("ADDING NEW STUDENTS")    # COMMAND FOR INIT FUNCTION
+
+s1 = Student()                          # CREATE NEW OBJ
+print("\n")
+
+# Q2. ADD 3 NAMES AND MARKS IN A CLASS WITH RENAMING SELF PARAMETER
+class Students:                         # CREATE CLASS                         
+    def __init__(ABC, name, marks):     # DEF INIT FUNCTION WITH ABC, NAME, MARKS
+        ABC.name = name                 # LINKING NAME WITH ABC
+        ABC.marks = marks               # LINKING MARKS WITH abc
+        print("ADDING NEW NAMES")       # COMMAND FOR INIT FUNCTION
+
+S1 = Students("KRISH", 90)                  # CREATE OBJ AND ADD N1/M1 TO CONSTRUCTOR
+print(S1.name, S1.marks)                # PRINT MARKS N1,M1                         
+
+S2 = Students("HIYU", 80)                   # CREATE OBJ AND ADD N2/M2 TO CONSTRUCTOR
+print(S2.name, S2.marks)                # PRINT MARKS N2,M2
+
+S3 = Students("VERO", 70)                   # CREATING OBJ AND ADD N3/M3 TO CONSTRUCTOR
+print(S3.name, S3.marks)                # PRINT MARKS N3,M3
