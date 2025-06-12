@@ -1,36 +1,48 @@
 """
 
 METHODS : 
-FUNCTIONS THAT BELONG TO OBJECTS
-A CLASS HAS DATA(ATTRITIBUTES) AND METHODS(FUNCTIONS)
-EXAMPLE: STRING METHODS, DICTIONARY METHODS ETC
+- FUNCTIONS THAT BELONG TO OBJECTS
+- A CLASS HAS DATA(ATTRITIBUTES) AND METHODS(FUNCTIONS)
+- EXAMPLE: STRING METHODS, DICTIONARY METHODS ETC
 
-WE DEFINE METHODS BELOW OUR CONTRUCTOR
-IN OUR METHOD, THE FIRST PARAMETER SHALL ALWAYS BE SELF
+- WE DEFINE METHODS BELOW OUR CONTRUCTOR IN OUR METHOD, THE FIRST PARAMETER SHALL ALWAYS BE SELF
 
-SYNTAX : 
+- SYNTAX : 
     DEF METHOD_NAME(SELF):
         COMMAND
 
-AFTER THIS WE CREATE OUR OBJECT
-AFTER CREATING OBJECT WE CALL OUR METHODS AND PRINT
+- AFTER THIS WE CREATE OUR OBJECT
+- AFTER CREATING OBJECT WE CALL OUR METHODS AND PRINT
+- DECORATOR : A METHOD THAT MODIFIES BEHAVIOR OF ANOTHER METHOD
+- A DECORATOR IS ALWAYS USED WITH '@'
 
-TYPES OF METHODS:-
+- TYPES OF METHODS:-
         
-        1. NON STATIC METHODS : 
+        1. INSTANCE/OBJECTS METHODS : 
         - WORK AT OBJECT LEVEL 
         - ALWAYS USE SELF PARAMETER
         - ALWAYS LINKED WITH OBJ.ATTR
 
-        2. STATIC METHODS : 
-        - WORK AT CLASS LEVEL 
-        - DONT USE SELF PARAMETER
-        - DECORATOR : CONVERTS NORMAL METHOD TO STATIC METHOD
+        1. STATIC METHODS : 
+        - USED WHEN WE DONT WANT TO ACCESS/CHANGE ANY OBJECT/CLASS ATTRIBUTES 
+        - GENERALLY USED WHEN SOMETHING DEFAULT IS NEEDED
+        - DOESNT USE SELF PARAMETER
+        - CANT ACCESS OR MODIFY CLASS STATE & GENERAL UTILITY
         - SYNTAX : 
             CLASS CLASS_NAME:
-            @ STATIC METHOD         # DECORATOR
-            DEF METHOD_NAME 
-            COMMANDS
+            @STATIC METHOD         # DECORATOR
+                DEF METHOD_NAME 
+                COMMANDS
+
+        3. CLASS METHODS : 
+        - BOUND TO THE CLASS 
+        - TAKES CLASS AS AN IMPLICIT FIRST ARGUEMENT
+        - CLASS CLASS_NAME : 
+            @CLASSMETHOD            # DECORATOR
+                DEF METHOD_NAME(CLS, NAME):
+                COMMANDS
+
+- @PROPERTY : A DECORATOR THAT ALLOWS US TO DEFINE METHODS THAN CAN BE ACCESSED LIKE ATTRIBUTES
 
 
 """
@@ -113,4 +125,40 @@ class accounts:                                         # CREATE CLASS
 C1 = accounts(10000, 12345)                             # BALANCE AND ACCOUNT NO.
 C1.debit(1000)                                          # DEBIT AMOUNT
 C1.credit(2000)                                         # CREDIT AMOUNT
+print("\n")
 
+
+# Q4. CHANGE DEFAULT NAME INSIDE A CLASS THROUGH AN OBJECT USING CLASS METHOD
+
+class Person :                                          # CREATE CLASS
+
+    name = "anonymous"                                  # NAME INPUT                                
+
+    @classmethod                                        # DECORATOR
+    def changename(cls, name):                          # CLASS METHOD CREATED
+        cls.name = name                                 # LINKED NAME WITH CLASS
+
+p1 = Person()                                           # CREATE OBJECT
+p1.changename("KRISH LONGWANI")                         # NAME CHANGED
+print(Person.name)                                      # CLASS NAME CHANGED VIA OBJECT P1
+print("\n")
+
+# Q5. CALC AVG OF 3 SUBJ, AND THEN IF ONE SUBJ MARKS ARE CHANGED, THE AVG SHOULD MODIFY 
+
+class Subjects:
+
+    def __init__(self, cn, python, git):
+        self.cn = cn
+        self.python = python
+        self.git = git
+
+    @property
+    def avg(self):
+        return (self.cn + self.python + self.git ) / 3
+    
+s1 = Subjects (50,60,70)
+print("AVERAGE =",s1.avg)
+
+s1.python = 90
+s1.cn = 80
+print("MODIFIED AVERAGE =",s1.avg)
